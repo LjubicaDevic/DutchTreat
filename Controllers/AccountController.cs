@@ -69,12 +69,14 @@ namespace DutchTreat.Controllers
             return View();
 
         }
+
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "App");
         }
+
         [HttpPost]
         public async Task<IActionResult> CreateToken([FromBody]LoginViewModel model)
         {

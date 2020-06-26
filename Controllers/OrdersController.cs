@@ -40,7 +40,6 @@ namespace DutchTreat.Controllers
             try
             {
                 var username = User.Identity.Name;
-                //  var results = _repository.GetAllOrders(includeItems);
                 var results = _repository.GetAllOrdersByUser(username, includeItems);
                 return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(_repository.GetAllOrders(includeItems)));
 
@@ -77,16 +76,7 @@ namespace DutchTreat.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] OrderViewModel model)
         {
-            //if (model.DeleteById!=null)
-            //{
-            //    _repository.DeleteOrder(model.DeleteById);
-            //    if (_repository.SaveAll())
-            //    {
-            //        return Ok("Order is deleted");
-            //    }
-            //    else
-            //        return BadRequest("Failed to delete order");
-            //}
+            
             try
             {
                 if (ModelState.IsValid)
@@ -125,7 +115,6 @@ namespace DutchTreat.Controllers
         
         
         [HttpDelete("{id:int}")]
-        //  [AcceptVerbs()]
         public IActionResult Delete(int id)
         {
             if (ModelState.IsValid)
